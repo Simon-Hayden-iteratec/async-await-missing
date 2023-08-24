@@ -1,10 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () =>
+      import('./root.component').then((m) => m.RootComponent),
+  },
+  {
+    path: 'sub-route',
+    loadComponent: () =>
+      import('./sub-route/sub-route.component').then(
+        (m) => m.SubRouteComponent
+      ),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
